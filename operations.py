@@ -25,6 +25,112 @@ class Operator(object):
         self.order_in_operations = is_valid_symbol_order_in_operations(order_in_operations)
         self.position = position
 
+class Add:
+    def __init__(self, op1):
+        self.op1 = op1
+
+    def apply(self, op2):
+        return self.op1 + op2
+
+
+class Subtract:
+    def __init__(self, op1):
+        self.op1 = op1
+
+    def apply(self, op2):
+        return self.op1 - op2
+
+
+class Multiply:
+    def __init__(self, op1):
+        self.op1 = op1
+
+    def apply(self, op2):
+        return self.op1 * op2
+
+
+class Divide:
+    def __init__(self, op1):
+        self.op1 = op1
+
+    def apply(self, op2):
+        return self.op1 / op2
+
+
+class Exponent:
+    def __init__(self, op1):
+        self.op1 = op1
+
+    def apply(self, op2):
+        return pow(self.op1,  op2)
+
+class Modulu:
+    def __init__(self, op1):
+        self.op1 = op1
+
+    def apply(self, op2):
+        return self.op1 % op2
+
+class Maximum:
+    def __init__(self, op1):
+        self.op1 = op1
+
+    def apply(self, op2):
+        if self.op1>op2:
+            return self.op1
+        else:
+            return op2
+class Minimum:
+    def __init__(self, op1):
+        self.op1 = op1
+
+    def apply(self, op2):
+        if self.op1<op2:
+            return self.op1
+        else:
+            return op2
+class Average:
+    def __init__(self, op1):
+        self.op1 = op1
+
+    def apply(self, op2):
+        return (self.op1 + op2)/2
+
+class Negation:
+    def __init__(self, op1):
+        self.op1 = op1
+
+    def apply(self):
+        return -self.op1
+
+class Factorial:
+    def __init__(self, op1):
+        self.op1 = op1
+
+    def apply(self):
+        return fac(self.op1)
+
+
+
+class NoOp:
+    def apply(self, __op):
+        return __op
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def add(op1, op2):
     return op1 + op2

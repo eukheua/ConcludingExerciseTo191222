@@ -121,9 +121,10 @@ def handle_operation_with_potential_precedence(numbers_list, numbers_list_start_
                                                operations_list_start_index, operations_list_end_index, operation):
     if operations_list_start_index != operations_list_end_index and operations_list[
         operations_list_start_index + 1] == open_bracket:
-        return handle_bracket_operation(numbers_list, numbers_list_start_index + 1, numbers_list_end_index,
+        # maybe not working
+        return operation.apply(handle_bracket_operation(numbers_list, numbers_list_start_index + 1, numbers_list_end_index,
                                         operations_list,
-                                        operations_list_start_index + 1, operations_list_end_index, operation)
+                                        operations_list_start_index + 1, operations_list_end_index, operation))
     else:
         number = operation.apply((numbers_list[numbers_list_start_index + 1]))
         return calculate(number, numbers_list, numbers_list_start_index + 1, numbers_list_end_index, operations_list,
@@ -134,7 +135,7 @@ def handle_subtraction(numbers_list, numbers_list_start_index, numbers_list_end_
                        operations_list_start_index, operations_list_end_index, subtract):
     if operations_list_end_index - operations_list_start_index >= 1 and (
             operations_list[operations_list_start_index + 1] == addition_sign or operations_list[
-        operations_list_start_index + 1] == "-"):
+        operations_list_start_index + 1] == subtraction_sign):
         number = subtract.apply(numbers_list[numbers_list_start_index + 1])
         result = calculate(number, numbers_list, numbers_list_start_index + 1, numbers_list_end_index, operations_list,
                            operations_list_start_index + 1, operations_list_end_index)

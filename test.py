@@ -12,9 +12,13 @@ def main():
     #print(validate_brackets("(7+4)+(5)"))
     #print(find_index_of_closing_bracket(['(','(','^','*',')','@',')','%'],1))
     tester = TestUtils()
+    expression_list = convert_string_expression_to_list("3+57-(43%2)+~7-1")
+    expression_list = convert_string_expression_to_list("3+53-(4/2)+71-1")
+    print(expression_list)
+    print(convert_infix_to_postfix(expression_list))
     #tester.test_find_index_of_closing_bracket()
     #tester.test_brackets_check()
-    tester.test_find_numbers_between_operators_1()
+    #tester.test_find_numbers_between_operators_1()
 class TestUtils(unittest.TestCase):
     def test_find_index_of_closing_bracket(self):
       t = find_index_of_closing_bracket(['(','(','^','*',')','@',')','%'],1)

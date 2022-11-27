@@ -1,6 +1,6 @@
 from calculator import *
 def main():
-    print(evaluate_expression("1+3*9-5"))
+    print(evaluate_expression("5*(6+7)/5"))
 
 if __name__ == "__main__":
     main()

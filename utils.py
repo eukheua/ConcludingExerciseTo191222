@@ -42,16 +42,17 @@ def find_numbers_between_operators(operations_list, operations_list_start_index,
             quantity_of_numbers_between_operators += 1
     return quantity_of_numbers_between_operators
 
-def find_operation_up_to_next_add_or_sub(operations_list,start_index,end_index):
+
+def find_operation_up_to_next_add_or_sub(operations_list, start_index, end_index):
     i = start_index
     while i <= end_index:
         if operations_list[i] == addition_sign or operations_list[i] == subtraction_sign:
-            return i-1
+            return i - 1
         if operations_list[i] == open_bracket:
-            i = find_index_of_closing_bracket(operations_list,i) +1
+            i = find_index_of_closing_bracket(operations_list, i) + 1
         else:
-            i+=1
-    return i-1
+            i += 1
+    return i - 1
 
 
 def converting_string_nums_to_nums_list(expression):
@@ -71,6 +72,47 @@ def converting_string_nums_to_nums_list(expression):
 
 def clean_spaces(expression):
     return "".join(expression.split(" "))
+
+
+def convert_string_expression_to_list(expression):
+    expression_list = []
+    number = ""
+    for char in expression:
+        if char.isdigit() == True or char == ".":
+            number += char
+        else:
+            if number != "":
+                expression_list.append(float(number))
+                number = ""
+            if char in supported_operators:
+                expression_list.append(char)
+    if number != "":
+        expression_list.append(float(number))
+        number = ""
+    return expression_list
+
+
+def convert_infix_to_postfix(expression_list):
+    stack = []
+    postfix_expression_list = []
+    for item in expression_list:
+        if type(item) == float:
+            postfix_expression_list.append(item)
+        else:
+            if item == closed_bracket:
+                while stack[len(stack) - 1] != open_bracket:
+                    postfix_expression_list += stack.pop()
+                stack.pop()
+            elif item == open_bracket:
+                stack.append(item)
+            else:
+                if len(stack) != 0:
+                    while len(stack) != 0 and OPERATION_ORDER_DICT[stack[len(stack) - 1]] >= OPERATION_ORDER_DICT[item]:
+                        postfix_expression_list.append(stack.pop())
+                stack.append(item)
+    while len(stack) != 0:
+        postfix_expression_list.append(stack.pop())
+    return postfix_expression_list
 
 
 def converting_string_operators_to_operators_list(expression):

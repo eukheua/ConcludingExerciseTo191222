@@ -19,7 +19,7 @@ def main():
     #print(convert_infix_to_postfix(expression_list))
     #postfix = convert_infix_to_postfix(expression_list)
     #print(calculate_postfix(postfix))
-    another_test_expression = convert_string_expression_to_list("20-3/~4+(8&2)-4!")
+    another_test_expression = convert_string_expression_to_list("4~3")
     another_test_postfix = convert_infix_to_postfix(another_test_expression)
     print(calculate_postfix(another_test_postfix))
     #tester.test_find_index_of_closing_bracket()

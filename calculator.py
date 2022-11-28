@@ -27,6 +27,8 @@ def calculate_postfix(expression):
             if OPERATION_DICT[operator].position == "right":
                 operand1 = stack.pop()
                 stack.append(OPERATION_DICT[operator].operation_func(operand1))
+    if len(stack) > 1:
+        raise RuntimeError("illegal expression")
     return stack[0]
 
 

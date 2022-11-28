@@ -20,10 +20,11 @@ def is_valid_position(position):
 
 
 class Operator(object):
-    def __init__(self, symbol, order_in_operations, position):
+    def __init__(self, symbol, order_in_operations, position,operation_func):
         self.symbol = is_valid_symbol(symbol)
         self.order_in_operations = is_valid_symbol_order_in_operations(order_in_operations)
         self.position = position
+        self.operation_func = operation_func
 
 class Add:
     def __init__(self, op1):

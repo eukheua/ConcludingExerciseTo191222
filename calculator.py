@@ -1,6 +1,5 @@
 from utils import *
 from operations import *
-from test import *
 from config import *
 from input import *
 
@@ -10,6 +9,28 @@ def evaluate_expression(expression):
     numbers_list = converting_string_nums_to_nums_list(expression)
     operations_list = converting_string_operators_to_operators_list(expression)
     return calculate(None, numbers_list, 0, len(numbers_list)-1, operations_list, 0, len(operations_list) - 1)
+
+def calculate_postfix(expression):
+    stack = []
+    for item in expression:
+        if type(item) == float:
+            stack.append(item)
+        else:
+            operator = item
+            if OPERATION_DICT[operator].position == "middle":
+                operand2 = stack.pop()
+                operand1 = stack.pop()
+                stack.append(OPERATION_DICT[operator].operation_func(operand1,operand2))
+            if OPERATION_DICT[operator].position == "left":
+                operand1 = stack.pop()
+                stack.append(OPERATION_DICT[operator].operation_func(operand1))
+            if OPERATION_DICT[operator].position == "right":
+                operand1 = stack.pop()
+                stack.append(OPERATION_DICT[operator].operation_func(operand1))
+    return stack[0]
+
+
+
 
 
 def calculate(replacing_number, numbers_list, numbers_list_start_index, numbers_list_end_index, operations_list,

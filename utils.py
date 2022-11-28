@@ -107,8 +107,9 @@ def convert_infix_to_postfix(expression_list):
                 stack.append(item)
             else:
                 if len(stack) != 0:
-                    while len(stack) != 0 and OPERATION_ORDER_DICT[stack[len(stack) - 1]] >= OPERATION_ORDER_DICT[item]:
-                        postfix_expression_list.append(stack.pop())
+                    if stack[len(stack) - 1] != open_bracket:
+                        while len(stack) != 0 and OPERATION_ORDER_DICT[stack[len(stack) - 1]] >= OPERATION_ORDER_DICT[item]:
+                            postfix_expression_list.append(stack.pop())
                 stack.append(item)
     while len(stack) != 0:
         postfix_expression_list.append(stack.pop())

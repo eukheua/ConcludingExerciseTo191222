@@ -1,3 +1,4 @@
+from calculator import calculate_postfix
 from operations import *
 from utils import *
 import unittest
@@ -13,9 +14,14 @@ def main():
     #print(find_index_of_closing_bracket(['(','(','^','*',')','@',')','%'],1))
     tester = TestUtils()
     expression_list = convert_string_expression_to_list("3+57-(43%2)+~7-1")
-    expression_list = convert_string_expression_to_list("3+53-(4/2)+71-1")
-    print(expression_list)
-    print(convert_infix_to_postfix(expression_list))
+    expression_list = convert_string_expression_to_list("8+~5/2")
+    #print(expression_list)
+    #print(convert_infix_to_postfix(expression_list))
+    #postfix = convert_infix_to_postfix(expression_list)
+    #print(calculate_postfix(postfix))
+    another_test_expression = convert_string_expression_to_list("20-3/~4+(8&2)-4!")
+    another_test_postfix = convert_infix_to_postfix(another_test_expression)
+    print(calculate_postfix(another_test_postfix))
     #tester.test_find_index_of_closing_bracket()
     #tester.test_brackets_check()
     #tester.test_find_numbers_between_operators_1()
